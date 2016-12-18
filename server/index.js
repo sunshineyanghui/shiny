@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const bodyParser = require('body-parser');
-
+var path = require('path');
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(cors());//解决跨域问题
@@ -15,8 +15,11 @@ app.use(cors());//解决跨域问题
 // db.once('open', function(){
 //   console.log('success!')//连接成功后打印success
 // });
+// app.get('/', function(req,res){
+//   res.send('hello world'+'\n');//客户端返回
+// })
 app.get('/', function(req,res){
-  res.send('hello world'+'\n');//客户端返回
+  res.sendFile(path.join(__dirname+'/public/about.html'));//客户端返回
 })
 
 app.post('/', function(req,res){
