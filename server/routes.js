@@ -12,9 +12,7 @@ module.exports = function(app){
   app.post('/posts', function(req,res){
     let content = req.body.content;
     let title = req.body.title;
-    let post = new Post();
-    post.title = req.body.title;
-    post.content = req.body.content;
+    const post = new Post({title: title, content: content});
     console.log(req.body.title);
     post.save();
     console.log(req.body);
