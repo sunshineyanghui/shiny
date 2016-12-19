@@ -26,10 +26,15 @@ app.get('/', function(req,res){
 // })
 
 app.post('/posts', function(req,res){
-  const post = new Post({title:'yanghui',content:'content content'});
+  let content = req.body.content;
+  let title = req.body.title;
+  let post = new Post();
+  post.title = req.body.title;
+  post.content = req.body.content;
+  console.log(req.body.title);
   post.save();
   console.log(req.body);
-  res.send(req.body);//客户端返回
+  res.json(req.body.title);//客户端返回
 })
 app.listen(3000,function(){
   console.log('running on port 3000...');
