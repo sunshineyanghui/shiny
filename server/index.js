@@ -36,6 +36,20 @@ app.post('/posts', function(req,res){
   console.log(req.body);
   res.json(req.body.title);//客户端返回
 })
+app.get('/posts',function(req,res){
+  Post.find(function(err, posts) {
+    res.json({posts})
+  });
+})
+app.get('/posts/:id',function(req,res){
+  res.send('read one post!')
+})
+app.put('/posts/:id',function(req,res){
+  res.send('update a post!')
+})
+app.delete('/posts/:id',function(req,res){
+  res.send('delete a post!')
+})
 app.listen(3000,function(){
   console.log('running on port 3000...');
 })
