@@ -10,6 +10,8 @@ class App extends React.Component {
         <li><Link to="/hello1">Hello1</Link></li>
         <li><Link to="/hello2">Hello2</Link></li>
       </ul>
+      {this.props.children}
+      <footer>footer</footer>
     </div>
     )
   }

@@ -21545,9 +21545,13 @@
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.browserHistory },
-	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _App2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/hello1', component: _Hello2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/hello2', component: _Hello4.default })
+	    _react2.default.createElement(
+	      _reactRouter.Route,
+	      { path: '/', component: _App2.default },
+	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Hello2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/hello1', component: _Hello2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/hello2', component: _Hello4.default })
+	    )
 	  );
 	};
 
@@ -26745,6 +26749,12 @@
 	              'Hello2'
 	            )
 	          )
+	        ),
+	        this.props.children,
+	        _react2.default.createElement(
+	          'footer',
+	          null,
+	          'footer'
 	        )
 	      );
 	    }
