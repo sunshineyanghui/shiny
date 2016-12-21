@@ -16,7 +16,7 @@ module.exports = function(app){
     console.log(req.body.title);
     post.save();
     console.log(req.body);
-    res.json(req.body.title);//客户端返回
+    res.json(req.body);//客户端返回
   })
   app.get('/posts',function(req,res){
     Post.find(function(err, posts) {

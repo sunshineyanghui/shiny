@@ -21541,6 +21541,10 @@
 
 	var _Post2 = _interopRequireDefault(_Post);
 
+	var _New = __webpack_require__(268);
+
+	var _New2 = _interopRequireDefault(_New);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var renderRoutes = function renderRoutes() {
@@ -21551,7 +21555,8 @@
 	      _reactRouter.Route,
 	      { path: '/', component: _App2.default },
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: 'posts/:id', component: _Post2.default })
+	      _react2.default.createElement(_reactRouter.Route, { path: 'posts/:id', component: _Post2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _New2.default })
 	    )
 	  );
 	};
@@ -26870,7 +26875,12 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        postList
+	        postList,
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/new' },
+	          '\u589E\u52A0\u6587\u7AE0'
+	        )
 	      );
 	    }
 	  }]);
@@ -28421,7 +28431,7 @@
 
 
 	// module
-	exports.push([module.id, "*{ margin: 0; padding: 0; box-sizing: border-box; }\n.header{ width: 100%; height: 80px; text-align: center; background-color: #512da8; line-height: 80px; color: #fff; font-size:2em;}\n.header a{ color: #fff; text-decoration: none;}\n.post-card{max-width: 600px; width: 100%; box-shadow: 2px 3px 4px rgba(0,0,0,0.4);margin: 0 auto;margin-top: 10px; display: block;color: #212121; text-decoration: none;}\n", ""]);
+	exports.push([module.id, "*{ margin: 0; padding: 0; box-sizing: border-box; }\n.header{ width: 100%; height: 80px; text-align: center; background-color: #512da8; line-height: 80px; color: #fff; font-size:2em;}\n.header a{ color: #fff; text-decoration: none;}\n.post-card{max-width: 600px; width: 100%; box-shadow: 2px 3px 4px rgba(0,0,0,0.4);margin: 0 auto;margin-top: 10px; display: block;color: #212121; text-decoration: none; padding: 10px;}\nfooter{width: 100%; height: 80px; text-align: center; background-color: #512da8; line-height: 80px; color: #fff; margin-top: 10px;}\n.post-content{ width: 100%; max-width: 600px; margin: 0 auto;}\n.post-content h3{ text-align: center;}\n", ""]);
 
 	// exports
 
@@ -28732,6 +28742,86 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 267 */,
+/* 268 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _axios = __webpack_require__(237);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var New = function (_React$Component) {
+	  _inherits(New, _React$Component);
+
+	  function New() {
+	    _classCallCheck(this, New);
+
+	    var _this = _possibleConstructorReturn(this, (New.__proto__ || Object.getPrototypeOf(New)).call(this));
+
+	    _this.state = {
+	      title: '',
+	      content: ''
+	    };
+	    return _this;
+	  }
+
+	  _createClass(New, [{
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      var title = this.refs.title.value;
+	      var content = this.refs.content.value;
+	      console.log({ title: title, content: content });
+	      var data = { title: title, content: content };
+	      _axios2.default.post('http://localhost:3000/posts', data);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'form',
+	          { onSubmit: this.handleSubmit.bind(this) },
+	          '\u6807\u9898\uFF1A',
+	          _react2.default.createElement('input', { type: 'text', name: 'title', ref: 'title' }),
+	          _react2.default.createElement('br', null),
+	          '\u5185\u5BB9\uFF1A',
+	          _react2.default.createElement('input', { type: 'text', name: 'content', ref: 'content' }),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('input', { type: 'submit' })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return New;
+	}(_react2.default.Component);
+
+	exports.default = New;
 
 /***/ }
 /******/ ]);

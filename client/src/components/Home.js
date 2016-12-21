@@ -23,6 +23,7 @@ class Home extends React.Component{
     return(
       <div>
         {postList}
+        <Link to="/new">增加文章</Link>
       </div>
     )
   }

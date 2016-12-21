@@ -1,4 +1,7 @@
 *{ margin: 0; padding: 0; box-sizing: border-box; }
 .header{ width: 100%; height: 80px; text-align: center; background-color: #512da8; line-height: 80px; color: #fff; font-size:2em;}
 .header a{ color: #fff; text-decoration: none;}
-.post-card{max-width: 600px; width: 100%; box-shadow: 2px 3px 4px rgba(0,0,0,0.4);margin: 0 auto;margin-top: 10px; display: block;color: #212121; text-decoration: none;}
+.post-card{max-width: 600px; width: 100%; box-shadow: 2px 3px 4px rgba(0,0,0,0.4);margin: 0 auto;margin-top: 10px; display: block;color: #212121; text-decoration: none; padding: 10px;}
+footer{width: 100%; height: 80px; text-align: center; background-color: #512da8; line-height: 80px; color: #fff; margin-top: 10px;}
+.post-content{ width: 100%; max-width: 600px; margin: 0 auto;}
+.post-content h3{ text-align: center;}
