@@ -28778,13 +28778,7 @@
 	  function New() {
 	    _classCallCheck(this, New);
 
-	    var _this = _possibleConstructorReturn(this, (New.__proto__ || Object.getPrototypeOf(New)).call(this));
-
-	    _this.state = {
-	      title: '',
-	      content: ''
-	    };
-	    return _this;
+	    return _possibleConstructorReturn(this, (New.__proto__ || Object.getPrototypeOf(New)).apply(this, arguments));
 	  }
 
 	  _createClass(New, [{
@@ -28794,8 +28788,9 @@
 	      var title = this.refs.title.value;
 	      var content = this.refs.content.value;
 	      console.log({ title: title, content: content });
-	      var data = { title: title, content: content };
-	      _axios2.default.post('http://localhost:3000/posts', data);
+	      _axios2.default.post('http://localhost:3000/posts', { title: title, content: content }).then(function (res) {
+	        return console.log(res);
+	      });
 	    }
 	  }, {
 	    key: 'render',

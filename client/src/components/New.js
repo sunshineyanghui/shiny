@@ -1,21 +1,13 @@
 import React from 'react';
 import axios from 'axios'
 class New extends React.Component{
-  constructor(){
-    super();
-    this.state={
-      title:'',
-      content:''
-    }
-  }
   handleSubmit(e){
     e.preventDefault();
     let title = this.refs.title.value;
     let content = this.refs.content.value;
     console.log({title,content});
-    var data ={title:title,content:content}
-    axios.post('http://localhost:3000/posts',data)
-
+    axios.post('http://localhost:3000/posts',{title,content})
+    .then( res => console.log(res))
   }
   render(){
     return(
