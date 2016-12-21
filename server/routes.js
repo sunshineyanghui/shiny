@@ -20,11 +20,14 @@ module.exports = function(app){
   })
   app.get('/posts',function(req,res){
     Post.find(function(err, posts) {
+      console.log({posts});
       res.json({posts})
     });
   })
   app.get('/posts/:id',function(req,res){
-    res.send('read one post!')
+    Post.findById({_id:req.params.id} ,function(err,post){
+      res.json({post:post});
+    })
   })
   app.put('/posts/:id',function(req,res){
     res.send('update a post!')
