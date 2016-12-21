@@ -28657,7 +28657,7 @@
 /* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -28677,30 +28677,30 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Posts = function (_React$Component) {
-	  _inherits(Posts, _React$Component);
+	var Post = function (_React$Component) {
+	  _inherits(Post, _React$Component);
 
-	  function Posts() {
-	    _classCallCheck(this, Posts);
+	  function Post() {
+	    _classCallCheck(this, Post);
 
-	    return _possibleConstructorReturn(this, (Posts.__proto__ || Object.getPrototypeOf(Posts)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (Post.__proto__ || Object.getPrototypeOf(Post)).apply(this, arguments));
 	  }
 
-	  _createClass(Posts, [{
-	    key: 'render',
+	  _createClass(Post, [{
+	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        this.props.content
+	        "div",
+	        { className: "post-content" },
+	        this.props.params.id
 	      );
 	    }
 	  }]);
 
-	  return Posts;
+	  return Post;
 	}(_react2.default.Component);
 
-	exports.default = Posts;
+	exports.default = Post;
 
 /***/ }
 /******/ ]);

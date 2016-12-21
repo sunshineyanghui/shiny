@@ -1,13 +1,14 @@
 import React from 'react';
 
-class Posts extends React.Component{
+class Post extends React.Component{
+
   render(){
     return(
-      <div>
-        {this.props.content}
+      <div className="post-content">
+        {this.props.params.id}
       </div>
     )
   }
  }
 
-export default Posts;
+export default Post;
