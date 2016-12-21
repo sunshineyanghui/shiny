@@ -1,15 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
-
+import Header from './Header'
 class App extends React.Component {
   render () {
 
     return(
     <div>
-      <ul>
-        <li><Link to="/hello1">Hello1</Link></li>
-        <li><Link to="/hello2">Hello2</Link></li>
-      </ul>
+      <Header />
       {this.props.children}
       <footer>footer</footer>
     </div>

@@ -1,14 +1,13 @@
 import React from 'react';
 
-class Hello1 extends React.Component{
+class Posts extends React.Component{
   render(){
     return(
       <div>
-        
-        Hello1
+        {this.props.content}
       </div>
     )
   }
  }
 
-export default Hello1;
+export default Posts;
