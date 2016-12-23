@@ -22,8 +22,8 @@ class Home extends React.Component{
     ))
     return(
       <div>
+        <Link to="/new" className="new-post">New Post</Link>
         {postList}
-        <Link to="/new">增加文章</Link>
       </div>
     )
   }

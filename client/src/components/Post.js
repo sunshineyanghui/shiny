@@ -17,7 +17,7 @@ class Post extends React.Component{
   }
   render(){
     return(
-      <div className="post-content">
+      <div className="post-wrap">
         <h3>{this.state.title}</h3>
         <p>{this.state.content}</p>
       </div>

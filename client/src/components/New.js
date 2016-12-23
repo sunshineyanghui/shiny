@@ -1,5 +1,6 @@
 import React from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import {Link} from 'react-router';
 class New extends React.Component{
   handleSubmit(e){
     e.preventDefault();
@@ -11,11 +12,20 @@ class New extends React.Component{
   }
   render(){
     return(
-      <div>
+      <div className="form-wrap">
         <form onSubmit={this.handleSubmit.bind(this)}>
-          标题：<input type="text" name="title" ref="title" /><br/>
-          内容：<input type="text" name="content" ref="content"/><br/>
-          <input type="submit" />
+          <div className="field">
+            <label className="label">标题</label>
+            <input type='text' name="title" ref='title' />
+          </div>
+          <div className="field">
+            <label className="label">内容</label>
+            <input type='text' name="content" ref='content' />
+          </div>
+          <div className="actions">
+            <button type='submit' className="button" key='2'>提交</button>
+            <Link to='/' className="cancel">取消</Link>
+          </div>
         </form>
       </div>
     )
