@@ -14,7 +14,6 @@ module.exports = function(app){
     let title = req.body.title;
     const post = new Post({title: title, content: content});
     post.save();
-    console.log(req.body);
     res.json(req.body);//客户端返回
   })
   app.get('/posts',function(req,res){
@@ -29,7 +28,10 @@ module.exports = function(app){
     })
   })
   app.put('/posts/:id',function(req,res){
-    res.send('update a post!')
+    Post.findOneAndUpdate({_id:req.params.id},req.body,function(err){
+      if (err) res.status(500).json({error:'更新失败'});
+      res.send('update a post!');
+    })
   })
   app.delete('/posts/:id',function(req,res){
     res.send('delete a post!')
