@@ -13,7 +13,6 @@ module.exports = function(app){
     let content = req.body.content;
     let title = req.body.title;
     const post = new Post({title: title, content: content});
-    console.log(req.body.title);
     post.save();
     console.log(req.body);
     res.json(req.body);//客户端返回

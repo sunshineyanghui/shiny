@@ -21545,6 +21545,10 @@
 
 	var _New2 = _interopRequireDefault(_New);
 
+	var _Edit = __webpack_require__(268);
+
+	var _Edit2 = _interopRequireDefault(_Edit);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var renderRoutes = function renderRoutes() {
@@ -21556,7 +21560,8 @@
 	      { path: '/', component: _App2.default },
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'posts/:id', component: _Post2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _New2.default })
+	      _react2.default.createElement(_reactRouter.Route, { path: 'new', component: _New2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/edit/:id', component: _Edit2.default })
 	    )
 	  );
 	};
@@ -26862,9 +26867,27 @@
 	    value: function render() {
 	      var postList = this.state.data.map(function (post, i) {
 	        return _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/posts/' + post._id, key: i, className: 'post-card' },
-	          post.title
+	          'div',
+	          { key: i, className: 'post-card' },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/posts/' + post._id },
+	            post.title
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { style: { float: 'right' } },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/edit/' + post._id },
+	              '\u4FEE\u6539'
+	            ),
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/posts/' + post._id },
+	              '\u5220\u9664'
+	            )
+	          )
 	        );
 	      });
 	      return _react2.default.createElement(
@@ -28427,18 +28450,28 @@
 	  function New() {
 	    _classCallCheck(this, New);
 
-	    return _possibleConstructorReturn(this, (New.__proto__ || Object.getPrototypeOf(New)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (New.__proto__ || Object.getPrototypeOf(New)).call(this));
+
+	    _this.state = { work: false };
+	    return _this;
 	  }
 
 	  _createClass(New, [{
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
+	      var _this2 = this;
+
 	      e.preventDefault();
+	      console.log('handleSubmit...');
 	      var title = this.refs.title.value;
 	      var content = this.refs.content.value;
+	      this.setState({ work: true });
 	      console.log({ title: title, content: content });
 	      _axios2.default.post('http://localhost:3000/posts', { title: title, content: content }).then(function (res) {
-	        return console.log(res);
+	        console.log(res);
+	        // browserHistory.push('/');//添加完跳转到首页
+	        // this.context.router.push('/');
+	        _this2.props.router.push('/');
 	      });
 	    }
 	  }, {
@@ -28475,7 +28508,7 @@
 	            { className: 'actions' },
 	            _react2.default.createElement(
 	              'button',
-	              { type: 'submit', className: 'button', key: '2' },
+	              { type: 'submit', className: 'button', key: '2', disabled: this.state.work },
 	              '\u63D0\u4EA4'
 	            ),
 	            _react2.default.createElement(
@@ -28492,6 +28525,9 @@
 	  return New;
 	}(_react2.default.Component);
 
+	New.contextTypes = {
+	  router: _react2.default.PropTypes.object.isRequired
+	};
 	exports.default = New;
 
 /***/ },
@@ -28529,7 +28565,7 @@
 
 
 	// module
-	exports.push([module.id, "*{ margin: 0; padding: 0; box-sizing: border-box; }\n.header{ width: 100%; height: 80px; text-align: center; background-color: #512da8; line-height: 80px; color: #fff; font-size:2em;}\n.header a{ color: #fff; text-decoration: none;}\n.post-card{max-width: 600px; width: 100%;box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;margin: 0 auto;margin-top: 10px; display: block;color: #212121; text-decoration: none; padding: 16px; border-radius: 5px;}\n\n.new-post {display: block;margin: 30px auto;width: 120px;height: 36px;line-height: 36px;text-align: center;background-color: #ff5252;font-size: 1em;color: #fff;text-decoration: none;border-radius: 20px;}\n\n.form-wrap {margin: 10px auto; max-width: 500px;}\nform {padding: 20px 40px;}\nlabel { display: block; font-size: .9em; color: rgba(0,0,0,.6); padding-bottom: 10px;}\nselect { border: 1px solid #ddd; bborder-radius: 5px; font-size: 1em; height: 30px; background-color: #fff;}\nselect:focus {outline: none;}\n.field {margin-bottom: 10px;}\ninput {width: 100%;height: 48px;border: 1px solid #ddd;border-radius: 5px;font-size: 1em;padding: 10px;box-sizing: border-box;}\ninput:focus {border: 1px solid #00bcd4;outline: none;}\n.actions {text-align: center;}\nbutton {width: 120px;height: 36px;border: none;background-color: #ff5252;font-size: 1em;color: #fff;display: inline-block;margin: 20px auto 0;border-radius: 20px;}\nbutton:hover {cursor: pointer;}\nbutton:focus {outline: none;}\n.cancel {display: inline-block;margin-left: 15px;font-size: 1em;color: #303f9f;opacity: .8;text-decoration: none;}\n\n.post-wrap{width: 100%;min-height: 200px;max-width: 600px;margin: 30px auto;background-color: #fff;border-radius: 5px;padding: 16px;box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;}\n\n.post-wrap h3 {font-size: 1.3em;padding-top: 10px;padding-bottom: 20px;text-align: center;}\n.post-wrap p {font-size: 1em;color: rgba(0,0,0,.8);}\n", ""]);
+	exports.push([module.id, "*{ margin: 0; padding: 0; box-sizing: border-box; }\n.header{ width: 100%; height: 80px; text-align: center; background-color: #512da8; line-height: 80px; color: #fff; font-size:2em;}\n.header a{ color: #fff; text-decoration: none;}\n.post-card{max-width: 600px; width: 100%;box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;margin: 0 auto;margin-top: 10px; display: block;color: #212121; text-decoration: none; padding: 16px; border-radius: 5px;}\n.post-card a{text-decoration: none;}\n.new-post {display: block;margin: 30px auto;width: 120px;height: 36px;line-height: 36px;text-align: center;background-color: #ff5252;font-size: 1em;color: #fff;text-decoration: none;border-radius: 20px;}\n\n.form-wrap {margin: 10px auto; max-width: 500px;}\nform {padding: 20px 40px;}\nlabel { display: block; font-size: .9em; color: rgba(0,0,0,.6); padding-bottom: 10px;}\nselect { border: 1px solid #ddd; bborder-radius: 5px; font-size: 1em; height: 30px; background-color: #fff;}\nselect:focus {outline: none;}\n.field {margin-bottom: 10px;}\ninput {width: 100%;height: 48px;border: 1px solid #ddd;border-radius: 5px;font-size: 1em;padding: 10px;box-sizing: border-box;}\ninput:focus {border: 1px solid #00bcd4;outline: none;}\n.actions {text-align: center;}\nbutton {width: 120px;height: 36px;border: none;background-color: #ff5252;font-size: 1em;color: #fff;display: inline-block;margin: 20px auto 0;border-radius: 20px;}\nbutton:hover {cursor: pointer;}\nbutton:focus {outline: none;}\n.cancel {display: inline-block;margin-left: 15px;font-size: 1em;color: #303f9f;opacity: .8;text-decoration: none;}\n\n.post-wrap{width: 100%;min-height: 200px;max-width: 600px;margin: 30px auto;background-color: #fff;border-radius: 5px;padding: 16px;box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;}\n\n.post-wrap h3 {font-size: 1.3em;padding-top: 10px;padding-bottom: 20px;text-align: center;}\n.post-wrap p {font-size: 1em;color: rgba(0,0,0,.8);}\n", ""]);
 
 	// exports
 
@@ -28840,6 +28876,129 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 268 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(179);
+
+	var _axios = __webpack_require__(237);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Edit = function (_React$Component) {
+	  _inherits(Edit, _React$Component);
+
+	  function Edit() {
+	    _classCallCheck(this, Edit);
+
+	    var _this = _possibleConstructorReturn(this, (Edit.__proto__ || Object.getPrototypeOf(Edit)).call(this));
+
+	    _this.state = {
+	      work: false,
+	      title: '',
+	      content: ''
+	    };
+
+	    return _this;
+	  }
+
+	  _createClass(Edit, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var _this2 = this;
+
+	      _axios2.default.get('http://localhost:3000/posts/' + this.props.params.id).then(function (res) {
+	        return _this2.setState({
+	          title: res.data.post.title,
+	          content: res.data.post.content
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'handleChange',
+	    value: function handleChange(e) {
+	      this.setState({ title: e.target.value });
+	    }
+	  }, {
+	    key: 'handleChange1',
+	    value: function handleChange1(e) {
+	      this.setState({ content: e.target.value });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      console.log(this.state);
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'form-wrap' },
+	        _react2.default.createElement(
+	          'form',
+	          null,
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'field' },
+	            _react2.default.createElement(
+	              'label',
+	              { className: 'label' },
+	              '\u6807\u9898'
+	            ),
+	            _react2.default.createElement('input', { type: 'text', name: 'title', ref: 'title', value: this.state.title, onChange: this.handleChange.bind(this) })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'field' },
+	            _react2.default.createElement(
+	              'label',
+	              { className: 'label' },
+	              '\u5185\u5BB9'
+	            ),
+	            _react2.default.createElement('input', { type: 'text', name: 'content', ref: 'content', value: this.state.content, onChange: this.handleChange1.bind(this) })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'actions' },
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'submit', className: 'button', disabled: this.state.work },
+	              '\u66F4\u65B0'
+	            ),
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/', className: 'cancel' },
+	              '\u53D6\u6D88'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Edit;
+	}(_react2.default.Component);
+
+	exports.default = Edit;
 
 /***/ }
 /******/ ]);
