@@ -3,6 +3,7 @@
 .header a{ color: #fff; text-decoration: none;}
 .post-card{max-width: 600px; width: 100%;box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;margin: 0 auto;margin-top: 10px; display: block;color: #212121; text-decoration: none; padding: 16px; border-radius: 5px;}
 .post-card a{text-decoration: none;}
+.delete-btn{ cursor: pointer;}
 .new-post {display: block;margin: 30px auto;width: 120px;height: 36px;line-height: 36px;text-align: center;background-color: #ff5252;font-size: 1em;color: #fff;text-decoration: none;border-radius: 20px;}
 
 .form-wrap {margin: 10px auto; max-width: 500px;}
